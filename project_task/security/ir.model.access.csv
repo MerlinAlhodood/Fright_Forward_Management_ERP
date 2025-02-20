@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_company_dynamic_task,res.company.dynamic.task,model_res_company_dynamic_task,,1,1,1,1
+access_res_company_dynamic_task_line,res.company.dynamic.task.line,model_res_company_dynamic_task_line,,1,1,1,1
+access_project_task_line,project.task.line,model_project_task_line,,1,1,1,1
