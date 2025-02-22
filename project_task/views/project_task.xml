@@ -64,25 +64,88 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
 
-<!--            <xpath expr="//sheet" position="inside">-->
-<!--                <div class="oe_title mb24">-->
-<!--                    <h3>-->
-<!--                        <field name="transfer_type" widget="radio" required="1" options="{'horizontal': true}"-->
-<!--                               nolabel="1"/>-->
-<!--                    </h3>-->
-<!--                </div>-->
-<!--            </xpath>-->
+            <xpath expr="//sheet/group/group/field[@name='display_in_project'][1]" position="after">
+                <field name="transfer_type" widget="radio" required="1" options="{'horizontal': true}" />
+                <field name="operation"/>
+            </xpath>
 
 
-            <xpath expr="//field[@name='tag_ids']" position="after">
 
 
-                    <field name="transfer_type" widget="radio" options="{'horizontal': true}" nolabel="1"/>
-                    <field name="operation"/>
-
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="create_date"/>
+                <field name="quot_id"/>
 
             </xpath>
 
+
+             <xpath expr="//field[@name='task_properties']" position="after">
+            <group string="Transport Details">
+
+
+                 <field name="transport" widget="radio" required="1" options="{'horizontal': true}" />
+                 <field name="in_land_shipment_type" widget="radio" required="1" options="{'horizontal': true}" />
+            </group>
+
+                 <group string="ADDRESS">
+                     <field name="address_to" widget="radio" required="1" options="{'horizontal': true}" />
+
+                 </group>
+
+
+                 <group>
+                     <group string="Transporter">
+                         <field name="shipper_id"/>
+                         <span class="o_form_label o_td_label" name="address_name">
+                             <b/>
+                         </span>
+                         <div class="o_address_format">
+                             <field name="shipper_phone" widget="phone"/>
+                             <field name="shipper_email" widget="email"/>
+                             <field name="s_street" placeholder="Address Line 1....." class="o_address_street" required="0"/>
+                                    <field name="s_street2" placeholder="Address Line 2....." class="o_address_street"/>
+                                    <field name="s_city" placeholder="City" class="o_address_city" required="0"/>
+                                    <field name="s_state_id" class="o_address_state" placeholder="State" required="0" options="{'no_open': True, 'no_quick_create': True}"/>
+                                    <field name="s_zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="s_country_id" placeholder="Country" class="o_address_country" required="0" options="{'no_open': True, 'no_quick_create': True}"/>
+                         </div>
+                     </group>
+
+                     <group string="Customer">
+                         <field name="consignee_id"/>
+                         <span class="o_form_label o_td_label" name="address_name">
+                             <b/>
+                         </span>
+                         <div class="o_address_format">
+                             <field name="consignee_phone" widget="phone"/>
+                             <field name="consignee_email" widget="email"/>
+                             <field name="s_street" placeholder="Address Line 1....." class="o_address_street" required="0"/>
+                                    <field name="s_street2" placeholder="Address Line 2....." class="o_address_street"/>
+                                    <field name="s_city" placeholder="City" class="o_address_city" required="0"/>
+                                    <field name="s_state_id" class="o_address_state" placeholder="State" required="0" options="{'no_open': True, 'no_quick_create': True}"/>
+                                    <field name="s_zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="s_country_id" placeholder="Country" class="o_address_country" required="0" options="{'no_open': True, 'no_quick_create': True}"/>
+                         </div>
+                     </group>
+                 </group>
+
+
+                 <group>
+                     <group string="NOTIFY PARTY">
+                         <field name="first_notify_id"/>
+                         <field name="final_destination_id"/>
+
+                     </group>
+                     <group>
+                         <group string="">
+                         <field name="second_notify_id"/>
+                         </group>
+                     </group>
+                 </group>
+
+
+
+             </xpath>
 
 
 
@@ -101,6 +164,100 @@
                         </tree>
                     </field>
                 </page>
+
+                <!-- Carriage Details page -->
+                <page string="Carriage Details">
+                    <group>
+                        <group string="VEHICLE DETAILS">
+                            <field name="truck_ref"/>
+                            <field name="trucker"/>
+                            <field name="truck_owner_id"/>
+                            <field name="trucker_number"/>
+                        </group>
+
+                        <group string="ESTIMATE TIME">
+                            <field name="pickup_datetime"/>
+                            <field name="arrival_datetime"/>
+                        </group>
+                    </group>
+
+
+                    <group>
+                        <group string="DISTANCE/CHARGES">
+                            <field name="approx_charges"/>
+                            <field name="distance"/>
+                        </group>
+
+                        <group string="CARRIAGE">
+                            <field name="length"/>
+                            <field name="width"/>
+                            <field name="height"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+
+
+                </page>
+
+
+                <!-- General Information page -->
+                <page string="General Information">
+
+                    <group>
+                        <group string="TRACKING DETAILS">
+                            <field name="tracking_number"/>
+                            <field name="barcode"/>
+                            <field name="agent_id"/>
+                            <field name="operator_id"/>
+                            <field name="notes"/>
+                        </group>
+
+                        <group string="OTHER DETAILS">
+                            <field name="move_type"/>
+                            <field name="incoterm"/>
+                            <field name="dangerous_goods"/>
+                            <field name="dangerous_goods_notes"/>
+                        </group>
+                    </group>
+
+
+                </page>
+
+                <!-- Cargo Details page -->
+                <page string="Cargo Details">
+
+                    <group>
+                        <group string="">
+                            <field name="cargo_desc"/>
+                            <field name="commodity"/>
+                            <field name="freight_collect_prepaid"/>
+                            <field name="no_of_containers"/>
+                            <field name="container_size"/>
+                            <field name="container_type"/>
+                        </group>
+
+                        <group string="">
+                            <field name="mask_numbers"/>
+                            <field name="hs_code"/>
+                            <field name="bl_document_type"/>
+                            <field name="total_weight"/>
+                            <field name="gross_weight"/>
+                            <field name="temperature"/>
+                            <field name="humidity"/>
+                            <field name="ventilation"/>
+                        </group>
+                    </group>
+
+
+
+
+                </page>
+
+
+
+
+
+
             </notebook>
         </field>
     </record>

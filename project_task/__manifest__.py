@@ -6,7 +6,7 @@
     'summary': 'Project Task',
     'description': 'Task Setting',
     'depends': [
-        'hr', 'project','base','project_task_default_stage'
+        'hr', 'project','base','project_task_default_stage','account_accountant','fleet'
     ],
     'data': [
         # 'data/ir_sequence.xml',
@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
         'views/project_task.xml',
         'views/res_company.xml',
+        'views/fleet_vehicle.xml',
         # 'views/employee_objective.xml',
         # 'views/assign_objective.xml',
         # 'wizard/reject_reason.xml',
